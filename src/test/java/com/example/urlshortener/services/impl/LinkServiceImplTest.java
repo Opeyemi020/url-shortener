@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 
@@ -27,9 +32,17 @@ class LinkServiceImplTest {
     @Test
     void shorten() {
         String url = "https://gitea.com/moonshon/khambo1/raw/branch/main/New_Active_Setup.txt";
+        String url1 = "https://gitea.com/moonshon/khambo1/raw/branch/main/New_Active_Setup.txt";
+        Link link = new Link();
+        Link link1 = new Link();
+        link1.setCreatedAt(LocalDate.of(2005, Month.AUGUST.ordinal(), 12));
+        link.setCreatedAt(LocalDate.of(2003, Month.AUGUST.ordinal(), 8));
         String result = linkService.shorten(url);
+        String result2 = linkService.shorten(url1);
         System.out.println(result);
+        System.out.println(result2);
         assertNotNull(result);
+        assertNotNull(result2);
     }
 
     @Test

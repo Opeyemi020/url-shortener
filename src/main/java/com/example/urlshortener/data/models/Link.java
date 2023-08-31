@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -24,7 +24,13 @@ public class Link {
     private String longUrl;
 
     private String shortUrl;
+
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDate createdAt ;
+
+    @PrePersist
+    public void setDate(){
+        createdAt = LocalDate.now();
+    }
 
 }
